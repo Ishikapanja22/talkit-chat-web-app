@@ -1,0 +1,272 @@
+<div class="dashboard-container">
+
+  <!-- SIDEBAR -->
+
+  <div class="sidebar">
+
+```
+<!-- TOP -->
+
+<div class="sidebar-top">
+
+  <div class="profile-section">
+
+    <div class="profile-avatar">
+      {{currentUser?.name?.charAt(0)}}
+    </div>
+
+    <div>
+
+      <h3>
+        {{currentUser?.name}}
+      </h3>
+
+      <p>
+        TalkIT Messenger
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- MENU -->
+
+  <div class="menu-container">
+
+    <button
+      class="menu-btn"
+      (click)="showMenu = !showMenu"
+    >
+      ⋮
+    </button>
+
+    <div
+      class="dropdown-menu"
+      *ngIf="showMenu"
+    >
+
+      <div
+        class="dropdown-item"
+        (click)="openProfileEditor()"
+      >
+        ✏ Edit Profile
+      </div>
+
+      <div
+        class="dropdown-item"
+        (click)="logout()"
+      >
+        🚪 Logout
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+  <input
+
+    type="text"
+
+    [(ngModel)]="searchText"
+
+    (input)="filterUsers()"
+
+    placeholder="Search users..."
+
+  >
+
+</div>
+
+<!-- USER LIST -->
+
+<div class="chat-users">
+
+  <div
+
+    class="chat-user"
+
+    *ngFor="let user of filteredUsers"
+
+    (click)="selectUser(user)"
+
+  >
+
+    <div
+      class="user-avatar"
+      [style.background]="user.color"
+    >
+      {{user.name.charAt(0)}}
+    </div>
+
+    <div class="user-info">
+
+      <h4>
+        {{user.name}}
+      </h4>
+
+      <p>
+
+        <span
+          [class.online-dot]="user.online"
+          [class.offline-dot]="!user.online"
+        ></span>
+
+        {{user.online ? 'Online' : 'Offline'}}
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- CHAT AREA -->
+
+  <div class="chat-area">
+
+```
+<!-- EMPTY CHAT -->
+
+<div
+  *ngIf="!selectedUser"
+  class="empty-chat"
+>
+
+  <h1>
+    Start Chatting 💜
+  </h1>
+
+  <p>
+    Select a user to start conversation
+  </p>
+
+</div>
+
+<!-- ACTIVE CHAT -->
+
+<div
+  *ngIf="selectedUser"
+  class="active-chat"
+>
+
+  <!-- HEADER -->
+
+  <div class="chat-header">
+
+    <div class="chat-user-header">
+
+      <div
+        class="user-avatar"
+        [style.background]="selectedUser.color"
+      >
+        {{selectedUser.name.charAt(0)}}
+      </div>
+
+      <div>
+
+        <h3>
+          {{selectedUser.name}}
+        </h3>
+
+        <p>
+          {{selectedUser.online ? 'Online' : 'Offline'}}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MESSAGES -->
+
+  <div class="chat-messages">
+
+    <div
+
+      *ngFor="let msg of messages"
+
+      class="message-wrapper"
+
+      [ngClass]="{
+
+        'my-message':
+        msg.senderName === currentUser.name,
+
+        'other-message':
+        msg.senderName !== currentUser.name
+
+      }"
+
+    >
+
+      <div class="message-content">
+
+        {{msg.content}}
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- INPUT -->
+
+  <div class="chat-input-section">
+
+    <input
+
+      type="text"
+
+      [(ngModel)]="currentMessage"
+
+      placeholder="Type your message..."
+
+      (keyup.enter)="sendMessage()"
+
+    >
+
+    <input
+
+      type="file"
+
+      hidden
+
+      #fileInput
+
+      (change)="onFileSelected($event)"
+
+    >
+
+    <button
+      class="attach-btn"
+      (click)="fileInput.click()"
+    >
+      📎
+    </button>
+
+    <button
+      class="send-btn"
+      (click)="sendMessage()"
+    >
+      Send
+    </button>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+</div>

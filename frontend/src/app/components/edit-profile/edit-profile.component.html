@@ -1,0 +1,43 @@
+<div class="profile-container">
+
+  <div class="profile-card">
+
+    <div class="profile-avatar">
+      {{name.charAt(0)}}
+    </div>
+
+    <h2>Edit Profile</h2>
+
+    <!-- NAME -->
+
+    <input
+      type="text"
+      placeholder="Enter Name"
+      [(ngModel)]="name"
+    >
+
+    <!-- EMAIL -->
+
+    <input
+      type="email"
+      placeholder="Enter Email"
+      [(ngModel)]="email"
+    >
+
+    <!-- BIO -->
+
+    <textarea
+      rows="4"
+      placeholder="Enter Bio"
+      [(ngModel)]="bio"
+    ></textarea>
+
+    <!-- BUTTON -->
+
+    <button (click)="saveProfile()">
+      Save Changes
+    </button>
+
+  </div>
+
+</div>

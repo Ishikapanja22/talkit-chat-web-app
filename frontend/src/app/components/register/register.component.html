@@ -1,0 +1,27 @@
+<div class="register-container">
+
+  <h2>TalkIT</h2>
+
+  <input
+    type="text"
+    placeholder="Enter Name"
+    [(ngModel)]="name"
+  >
+
+  <input
+    type="email"
+    placeholder="Enter Email"
+    [(ngModel)]="email"
+  >
+
+  <input
+    type="password"
+    placeholder="Enter Password"
+    [(ngModel)]="password"
+  >
+
+  <button (click)="register()">
+    Register
+  </button>
+
+</div>
