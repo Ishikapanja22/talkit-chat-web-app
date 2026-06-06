@@ -1,16 +1,10 @@
 const express = require('express');
-
 const router = express.Router();
-
 const {
-
-  updateProfile
-
+updateProfile
 } = require('../controllers/user.controller');
-
 router.put(
-  '/update-profile',
-  updateProfile
+'/update-profile',
+updateProfile
 );
-
 module.exports = router;
