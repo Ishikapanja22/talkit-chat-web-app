@@ -36,5 +36,4 @@ npm install
 ng serve
 ```
 
-## 👩‍💻 Author
-**Ishika** — [GitHub](https://github.com/Ishikapanja22)
+
